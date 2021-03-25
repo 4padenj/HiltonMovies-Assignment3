@@ -9,6 +9,9 @@ namespace HiltonMovies.Models
     public class Movie
     {
         [Required]
+        [Key]
+        public int MovieID { get; set; }
+        [Required]
         public string Category { get; set; }
         [Required]
         public string Title { get; set; }
@@ -19,9 +22,9 @@ namespace HiltonMovies.Models
         [Required]
         public string Rating { get; set; }
         public bool Edited { get; set; } 
-        public string LentTo { get; set; }
+        public string? LentTo { get; set; }
         
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
     }
 }

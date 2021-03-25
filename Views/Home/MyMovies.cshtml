@@ -6,7 +6,7 @@
     ViewData["MainTitle"] = "The Joel Hilton Film Collection";
     ViewData["MainSubtitle"] = "A Comprehensive List of His favorite Films";
 }
-@model IEnumerable<HiltonMovies.Models.Movie>
+@model IEnumerable<Movie>
 
 <div class="container">
     <h1>My Movies</h1>
@@ -21,24 +21,39 @@
                 <th scope="col">Edited</th>
                 <th scope="col">Lent To</th>
                 <th scope="col">Notes</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             @* C# Logic for cycling through data and printing to a table *@
-            @foreach (HiltonMovies.Models.Movie m in Model)
+            @foreach (Movie m in Model)
             {
                 @if (m.Title != "Independence Day")
                 {
-                    <tr>
-                        <td>@m.Category</td>
-                        <td>@m.Title</td>
-                        <td>@m.Year</td>
-                        <td>@m.Director</td>
-                        <td>@m.Rating</td>
-                        <td>@m.Edited</td>
-                        <td>@m.LentTo</td>
-                        <td>@m.Notes</td>
-                    </tr>
+            <tr>
+                <td>@m.Category</td>
+                <td>@m.Title</td>
+                <td>@m.Year</td>
+                <td>@m.Director</td>
+                <td>@m.Rating</td>
+                <td>@m.Edited</td>
+                <td>@m.LentTo</td>
+                <td>@m.Notes</td>
+                <td>
+                    <form asp-action="EditMovie" method="get">
+                        <input hidden value=@m.MovieID id="" name="MovieID">
+                        <button type="submit" class="btn btn-secondary">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="DeleteMovie" method="post">
+                        <input hidden value=@m.MovieID name="MovieID">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+
+            </tr>
                 }
             }
         </tbody>

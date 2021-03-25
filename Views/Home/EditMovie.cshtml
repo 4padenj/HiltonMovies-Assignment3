@@ -2,30 +2,30 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Add Movie";
+    ViewData["Title"] = "Edit Movie Details";
     ViewData["MainTitle"] = "The Joel Hilton Film Collection";
-    ViewData["MainSubtitle"] = "Add to the Collection";
+    ViewData["MainSubtitle"] = "Edit a Movie ";
 }
 
 @model Movie
 
 <div class="container w-50 bg-light rounded">
-    <form class="" asp-action="NewMovie" method="post">
+    <form class="" asp-action="EditMovie" method="post">
         <div class="form-group">
             <label for="categoryIn">Category:</label>
-            <input class="form-control" id="categoryIn" placeholder="Movie Category..." asp-for="Category" required>
+            <input class="form-control" id="categoryIn" value="@Model.Category" asp-for="Category" required>
         </div>
         <div class="form-group">
             <label for="titleIn">Title:</label>
-            <input class="form-control" id="titleIn" placeholder="Movie title..." asp-for="Title" required>
+            <input class="form-control" id="titleIn" value="@Model.Title" asp-for="Title" required>
         </div>
         <div class="form-group">
             <label for="yearIn">Year:</label>
-            <input class="form-control" id="yearIn" placeholder='Enter the year (i.e. "1999")' asp-for="Year" required>
+            <input class="form-control" id="yearIn" value="@Model.Year" asp-for="Year" required>
         </div>
         <div class="form-group">
             <label for="directorIn">Director:</label>
-            <input class="form-control" id="directorIn" placeholder='Name of the director' asp-for="Director" required>
+            <input class="form-control" id="directorIn" value="@Model.Director" asp-for="Director" required>
         </div>
         <div class="form-group">
             <label for="raitingIn">Select a Rating:</label>
@@ -46,14 +46,16 @@
         </div>
         <div class="form-group">
             <label for="lentTo">Lent To</label>
-            <input class="form-control" id="lentTo" placeholder='Person to whom the movie was lent' asp-for="LentTo">
+            <input class="form-control" id="lentTo" value="@Model.LentTo" asp-for="LentTo">
         </div>
         <div class="form-group">
             <label for="notesIn">Notes</label>
-            <textarea class="form-control" id="notesIn" rows="3" maxlength="25" asp-for="Notes"></textarea>
+            <textarea class="form-control" id="notesIn" rows="3" maxlength="25" value="@Model.Notes" asp-for="Notes"></textarea>
         </div>
+        <input hidden value=@Model.MovieID name="MovieID" />
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">Add Movie</button>
+            <button class="btn btn-success" type="submit">Save Changes</button>
+            <a class="btn btn-danger" asp-controller="Home" asp-action="MyMovies">Cancel</a>
         </div>
     </form>
 </div>
